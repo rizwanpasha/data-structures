@@ -1,0 +1,101 @@
+/**
+ *
+ * @author Rizwan Pasha
+ */
+public class CircularQueue {
+
+    int MAX_SIZE = 6;
+    int circularQueue[] = new int[MAX_SIZE];
+    int front = -1;
+    int rear = -1;
+
+    public static void main(String args[]) {
+        CircularQueue cq = new CircularQueue();
+        System.out.println(cq.size());
+        cq.enqueue(10);
+        System.out.println("current queue size " + cq.size());
+        cq.enqueue(20);
+        cq.enqueue(30);
+        cq.enqueue(40);
+        cq.enqueue(50);
+        cq.enqueue(60);
+        cq.enqueue(70);
+        System.out.println("current queue size " + cq.size());
+        cq.dequeue();
+        System.out.println("current queue size " + cq.size());
+        cq.dequeue();
+        System.out.println("current queue size " + cq.size());
+        cq.dequeue();
+        cq.dequeue();
+        cq.dequeue();
+        cq.dequeue();
+        cq.dequeue();
+        System.out.println("current queue size " + cq.size());
+
+    }
+
+    // returns the size of the queue
+    public int size() {
+        if (front == -1) {
+            return 0;
+        } else {
+            return front > rear ? (front + rear + 1) : (rear - front + 1);
+        }
+    }
+
+
+    // returns true if the queue is empty
+    public boolean isEmpty() {
+        if (front == -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    // returns ture if the queue is full
+    public boolean isFull() {
+        if ((front == 0 && rear == MAX_SIZE - 1) || (front == rear + 1)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    // adds new element at the read of the queue
+    public void enqueue(int value) {
+        if (isFull()) {
+            System.out.println("queue overflow");
+        } else {
+            if (front == -1) {
+                front = 0;
+            }
+            rear = (rear + 1) % MAX_SIZE;
+            circularQueue[rear] = value;
+            System.out.println(value + " inserted.");
+        }
+    }
+
+
+    // removes the element from front of the queue
+    public int dequeue() {
+        int value;
+        if (isEmpty()) {
+            System.out.println("queue underflow.");
+            return -1;
+        } else {
+            value = circularQueue[front];
+            if (front == rear) {
+                front = -1;
+                rear = -1;
+            } else {
+                front = (front + 1) % MAX_SIZE;
+            }
+            System.out.println(value + " removed.");
+            return value;
+        }
+    }
+
+}

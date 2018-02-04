@@ -1,0 +1,82 @@
+/**
+ *
+ * @author Rizwan Pasha
+ */
+
+public class QueueDemo {
+
+    int MAX_SIZE = 5, front = -1, rear = -1;
+    int queue[] = new int[MAX_SIZE];
+
+    public static void main(String[] args) {
+        QueueDemo queue = new QueueDemo();
+
+        queue.rear();
+
+        queue.insert(10);
+        queue.insert(20);
+        queue.insert(30);
+        queue.insert(40);
+        queue.insert(50);
+        queue.insert(60);
+
+        queue.remove();
+        queue.remove();
+        queue.remove();
+        queue.remove();
+        queue.remove();
+        queue.remove();
+    }
+
+    // checks if the queue is empty
+    public boolean isEmpty() {
+        return front == -1 && rear == -1;
+    }
+
+
+    // inserts the new element at the rear
+    public void insert(int value) {
+        if (isEmpty()) {
+            front = rear = 0;
+            queue[rear] = value;
+            System.out.println(queue[rear] + " inserted");
+        } else if (rear + 1 > MAX_SIZE - 1) {
+            System.out.println("Queue full");
+        } else {
+            queue[++rear] = value;
+            System.out.println(queue[rear] + " inserted");
+        }
+    }
+
+
+    // removes element from the front
+    public void remove() {
+        if (isEmpty()) {
+            System.out.println("Queue empty");
+        } else if (rear == front) {
+            System.out.println(queue[front] + " removed.");
+            rear = front = -1;
+        } else {
+            System.out.println(queue[front++] + " removed.");
+        }
+    }
+
+    // returns element at the front of the queue
+    public void front() {
+        if (isEmpty()) {
+            System.out.println("Queue empty");
+        } else {
+            System.out.println(queue[front] + " is at the front");
+        }
+    }
+
+
+    // returns the value at the rear of the queue
+    public void rear() {
+        if (isEmpty()) {
+            System.out.println("Queue empty");
+        } else {
+            System.out.println(queue[rear] + " is at the rear");
+        }
+    }
+}

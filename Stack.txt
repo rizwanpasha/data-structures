@@ -1,0 +1,64 @@
+/**
+ *
+ * @author Rizwan Pasha
+ */
+ 
+public class StackDemo {
+
+    final int MAX_SIZE = 4;
+    int[] stack = new int[MAX_SIZE];
+    int top = -1;
+
+    public static void main(String args[]) {
+        StackDemo stack = new StackDemo();
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        stack.push(40);
+        stack.push(50);
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+    }
+
+
+    // inserts new element onto the stack
+    public void push(int value) {
+        if (top + 1 > MAX_SIZE - 1) {
+            System.out.println("Stack overflow, cannot push " + value);
+            return;
+        }
+        top++;
+        stack[top] = value;
+        System.out.println("pushed " + value);
+    }
+
+    // removes top element from the stack
+    public int pop() {
+        if (isEmpty()) {
+            return -1;
+        }
+        System.out.print("poped ");
+        return stack[top--];
+    }
+
+    //returns top element from the stack
+    public int top() {
+        if (isEmpty()) {
+            return -1;
+        }
+        return stack[top];
+    }
+
+    // checks if the stack is empty
+    public boolean isEmpty() {
+        if (top == -1) {
+            System.out.print("Stack empty ");
+            return true;
+        }
+        return false;
+    }
+
+}
